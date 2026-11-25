@@ -13,10 +13,10 @@ namespace Monogame_Topic_3___Animation
 
         Rectangle window;
 
-        Texture2D tribbleGreyTexture, tribbleOrangeTexture;
+        Texture2D tribbleGreyTexture, tribbleOrangeTexture, tribbleCreamTexture;
 
-        Rectangle tribbleGreyrect, tribbleOrangeRect;
-        Vector2 tribbleGreySpeed, tribbleOrangeSpeed;
+        Rectangle tribbleGreyrect, tribbleOrangeRect, tribbleCreamRect;
+        Vector2 tribbleGreySpeed, tribbleOrangeSpeed, tribbleCreamSpeed;
 
         SoundEffect tribbleCoo;
 
@@ -41,7 +41,10 @@ namespace Monogame_Topic_3___Animation
             tribbleGreyrect = new Rectangle(300, 10, 100, 100);
 
             tribbleOrangeSpeed = new Vector2(2, 2);
-            tribbleOrangeRect = new Rectangle(300, 10, 100, 100);
+            tribbleOrangeRect = new Rectangle(0, 20, 100, 100);
+
+            tribbleCreamSpeed = new Vector2(2, 2);
+            tribbleCreamRect = new Rectangle(30, 20, 100, 100);
 
             base.Initialize();
         }
@@ -52,7 +55,7 @@ namespace Monogame_Topic_3___Animation
 
             // TODO: use this.Content to load your game content here
             tribbleGreyTexture = Content.Load<Texture2D>("tribbleGrey");
-            tribbleOrangeTexture = Content.Load<Texture2D>("tibbleOrange");
+            tribbleOrangeTexture = Content.Load<Texture2D>("tribbleOrange");
             tribbleCoo = Content.Load<SoundEffect>("tribble_Coo");
         }
 
@@ -75,6 +78,28 @@ namespace Monogame_Topic_3___Animation
                 tribbleGreySpeed.Y *= -1;
                 tribbleCoo.Play();
             }
+
+            //tribbleOrangeRect.X = (int)tribbleGreyrect.X;
+            //if (tribbleGreyrect.Right == tribbleOrangeRect.Left || tribbleGreyrect.Left == tribbleOrangeRect.Right)
+            //{
+            //    tribbleGreySpeed.X *= -1;
+            //    tribbleCoo.Play();
+            //}
+
+            tribbleOrangeRect.Y += (int)tribbleOrangeSpeed.Y;
+            if (tribbleOrangeRect.Bottom > window.Height || tribbleOrangeRect.Top < 0)
+            {
+                tribbleOrangeSpeed.Y *= -1;
+                tribbleCoo.Play();
+            }
+
+            //tribbleOrangeRect.Y += (int)tribbleOrangeSpeed.Y;
+            //if (tribbleOrangeRect.Right == tribbleGreyrect.Right || tribbleOrangeRect.Left == tribbleGreyrect.Left)
+            //{
+            //    tribbleOrangeSpeed.Y++;
+            //    tribbleCoo.Play();
+            //}
+
 
             base.Update(gameTime);
         }
